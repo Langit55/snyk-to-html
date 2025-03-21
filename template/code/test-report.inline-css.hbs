@@ -290,9 +290,58 @@
 .card.severity--high { border-top-color: #CE5019; }
 .card.severity--critical { border-top-color: #AB1A1A; }
 
-.card .fix-analysis { display:none }
-.card.show-fix .fix-analysis { display:block }
-.card.show-fix .dataflow { display:none }
+.card__tab__radio {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card__tab__label {
+  padding: 5px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
+  align-self: center;
+}
+
+.card__tab__label:hover {
+  color: #4b45a1;
+}
+
+.dataflow, .fix-analysis {
+  display: none;
+}
+
+.card input[id^="tab-dataflow"]:checked ~ .card__header .card__tab__label[for^="tab-dataflow"] {
+  background-color: #4b45a1;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.card.severity--high input[id^="tab-dataflow"]:checked ~ .card__header .card__tab__label[for^="tab-dataflow"] {
+ background-color:#CE5019;
+}
+
+.card.severity--medium   input[id^="tab-dataflow"]:checked ~ .card__header .card__tab__label[for^="tab-dataflow"] {
+ background-color:#D68000;
+}
+
+.card.severity--low input[id^="tab-dataflow"]:checked ~ .card__header .card__tab__label[for^="tab-dataflow"] {
+ background-color:#88879E;
+}
+
+.card input[id^="tab-fix"]:checked ~ .card__header .card__tab__label[for^="tab-fix"] {
+  background-color: #4b45a1;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.card  input[id^="tab-dataflow"]:checked ~ .card__section .dataflow {
+  display: block;
+}
+
+.card  input[id^="tab-fix"]:checked ~ .card__section .fix-analysis {
+  display: block;
+}
 
 .card__header { padding:24px }
 .card__header__main { display:flex; }
@@ -302,6 +351,7 @@
 .card__meta__item:last-child { border:none; }
 .card .card__title { display:inline-block; margin:0; font-size:22px; font-weight:600; vertical-align: top;}
 
+{{!-- TODO: ensure these are the same as the new changes and remove after --}}
 .card__actions { display:flex; padding:2px; border:1px solid #d3d3d9; border-radius:20px; background-color:#fff;  margin-left: auto; }
 .card__action { align-self: center; padding:5px 15px; font-size:14px; cursor: pointer; transition: all .2s; }
 .card__action:hover { color: #4b45a1; }
